@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>我崎岖的 Vim 学习之路 - zhuo1ang</title>
+
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="我崎岖的 Vim 学习之路" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/zhuo1angT">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnails/7.jpg" alt="我崎岖的 Vim 学习之路">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-18T00:59:57.000Z">2020-03-18</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    17 分钟 读完 (大约 2490 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                我崎岖的 Vim 学习之路
+            
+        </h1>
+        <div class="content">
+            <p>&emsp;&emsp;今天又学到了一个技巧，解决了真实的问题。这也让我激起了深深的回想，研究 Vim 的过程中曲折的学习之路，这里也做个总结，记录一下。</p>
+<hr>
+<p>&emsp;&emsp;事情是这样的，去年来上学开始，就一直有了要用 Linux 的需求，不管是做 15-213、 61-A 的 lab，还是说什么其它的学习要求，这都成为了一个问题。</p>
+<p>&emsp;&emsp;最开始的时候，我尝试了安装虚拟机，当时甚至可以说是我第一次尝试虚拟机的操作。在 OI 时期，Barty 曾经建议我装一下 NOI Linux，（后面知道了这个就是一个魔改的 Ubuntu），不过当时好像在安装的过程中出现了奇怪的报错，也始终不会解决，最终就不了了之了。这也是我一直以来特别讨厌、痛恨、害怕各种报错的原因。</p>
+<p>&emsp;&emsp;当时按照 《鸟哥的 Linux 私房菜》 这本书上面讲的来，于是就装了 CentOS，又因为这个感觉 CentOS 的 UI 有点丑，于是又同时装了 Ubuntu，用着用着就基本全去搞 Ubuntu 了…</p>
+<a id="more"></a>
+
+<p>&emsp;&emsp;装了虚拟机，当时最主要的目的就是两个，一个是学习 Linux 系统，另一个是做各种 lab。在这个新环境下，总得开始配个开发环境。然而 15-213 的课程前几个 lab，都不是“传统意义上的 Coding”要求很高的任务，于是我就这么一直凑活，用着 gedit 这个还算图形化的编辑器一直搞，如果要在终端里面敲的话就用一下 nano，日子也就这么一天一天地过，<del>虽然似乎 nano 这个编辑器在鄙视链的最底端，但是当我知道 nano 也是 GNU 计划的一部分的时候，那一瞬间我仿佛就变得不那么 low 了</del>。</p>
+<p>&emsp;&emsp;当时的心态大概是这个样子，当然当时也知道 Vim，Emacs 的圣战之类的，也是感觉熟练地用 Vim 在代码里面上下飞确实是一件很帅的事情…不过一直都感觉上手难度太大，也没有特别大的动力、需求去费劲把它搞明白，在这个阶段，大概只是知道 Vim 的几个模式，保存、退出等等…</p>
+<p>&emsp;&emsp;然后一件有点让人恼火的发生了，在我搞完 <strong>Data lab</strong> 之后，其中最后一个函数 <strong><floatPower2></strong> 始终跑不过，显示的一直是超时，10 秒钟的时间都跑不完一个单元测试，总是让我怀疑是不是哪里写错了。但是这么简单几行一个函数，又能有啥问题，折腾了很久也没有办法跑过。这件事后面成为了我装 Ubuntu 物理机的一个直接动机。当然，后面把这个问题查清楚了，确实就是虚拟机性能太低，即使在外面把计算性能调到最高，还是不能跑过；而当时也不懂 lab 里面做测试的程序的原理，其实那个程序都是自己 make 出来的， source 都可以自己改，在虚拟机里面，把 timeout 改成 30s，很顺利地就跑过去了。</p>
+<p>&emsp;&emsp;总之，因为在虚拟机里面操作各种的不方便，不舒服，再加上自己想尝试完全地用 Linux 来工作，<del>杜绝 Windows 打游戏摸鱼</del>。于是就搞了个镜像直接装了 <strong>Ubuntu 18.04</strong> 的真实机。刚刚折腾过去之后，最大的感受就是爽，虽然本身机器配置不差，但是在 Linux 下面还是明显地感觉到机器非常舒服，平时风扇的声音小了好多。除此之外，配置了各种 VS Code，Chrome，Typora，代理服务器，网易云，在 Linux 下面的开发非常舒服。就这样搞了三个月，平常只有必须到桌面端上网课的时候才搞到 Windows，同时又因为没有配置 Win 的环境，上去如果要进行一些进阶操作，每次都是对 Win 骂骂咧咧的…</p>
+<p>&emsp;&emsp;<del>物理机这块似乎跑了一点题，重点应该是 Vim 来着</del>。不过没有办法，在 Ubuntu 图形界面里面，用 VS Code 确实还是太舒服了，虽然在这个过程中我也跟着一些教程学了一些 Vim 快捷键，但是距离“在代码中飞行”的水平还差的太远，而且 VS Code 这种现代编辑器的代码补全、快速重构、调试，等等的功能还是用起来体验太好。说到这…虽然我也不是特别清楚，不过我估计在 Vim 上面应该也有各种各样的插件支持上面说的这些操作，Vim 的死忠们估计完全不会认同我说的…但是 Text Editor 这个事情毕竟还是非常主观，差异非常大的，对于我这种非常懒又很小白的用户，有现成能用的就不愿意花太多时间在工具的学习上面。</p>
+<p>&emsp;&emsp;到这个阶段，不得不用 Vim 的情景大概就只有远程连接服务器操作的时候了，不过对这个问题我的 Solution 是…先在本地 VS Code 搞，然后再右键上去…如果遇到了环境依赖问题，不得已的时候再用 Vim 做一些小的问题修改。就这样凑合着整，倒也还算是不错。</p>
+<hr>
+<p>&emsp;&emsp;接下来又是一件奇怪的事情了。由于一直在用 Ubuntu，就没有在 Windows 下面搞 shadowsocks 的客户端，科学上网的问题还没解决，这时候就碰到了诡异的问题，<strong>设置里面的代理信息无法保存</strong>。</p>
+<p>&emsp;&emsp;但是参考了各种各样的攻略，包括微软论坛上工程师的详细解答，始终还是不能解决，这件事就被拖了一段时间。就在前几天，突然想起来自己的 Windows 的版本竟然才是 1809，再加上又最近又爆出什么安全漏洞的事情（也没有仔细看，好像是一个收包检测的过程没有 Check，可能导致 Code Injection，搞出蠕虫来），正好可以升级更新一下。这个更新的过程，也是异常地曲折困难，又是报的错参考了微软论坛的方案也不能解决，最终折腾了好久终于弄上了 1909 的版本。然后转念又一想，既然都已经升了，马上新的 2004 就要变正式版，干脆直接整上吧，据说这个现在 3 月的这个已经非常稳定，和正式版本差别不大，一次给它安排了，一年以内不用再操心了。</p>
+<p>&emsp;&emsp;就这样，我兴高采烈地安排上了 <strong>Windows 10 2004</strong>，同时，在更新日志里面，又注意到了新版的 WSL 2。于是在微软商店里面搞了一个 <strong>Ubuntu 18.04 LTS</strong>，尝试了一下，发现这个速度比虚拟机里面的系统快多了，毕竟微软的这个虚拟技术和 VM 的不太一样，层级上来讲可以说和本身的 Windows 平行，确实快了很多，舒服了不少。搞到这里，我对 Win 就已经有一些好感了，<del>也逐渐能理解“最好的 Linux 发行版就是 Windows”这个意思了</del>。</p>
+<p>&emsp;&emsp;到这里，用 WSL 2 就可以得到一个命令行的 Linux，SSH 也能操作云服务器；后面试了试代理的设置，更新过后直接就好了，这样科学上网的问题也解决了。而桌面端的 Windows 还是可以全部使用 VS Code，云服务器上使用 Vim，就能解决全部的需求。</p>
+<hr>
+<p>&emsp;&emsp;然而就在一天之后的昨天…我又了解到了 VS Code 的远程资源管理的新功能…</p>
+<p>&emsp;&emsp;安装过 VS Code 新插件之后，可以直接在这里面打开 WSL 的机器，SSH 连接的远程主机，所有内容一样都在这里面打开，日常的开发工作简直完美啊！不过，又去了解了一番原理之后，发现，这个 WSL 2 的问题大概是以下几点：</p>
+<ul>
+<li><p>WSL 2 是基于 Hyper-V 的，跑了一个WSL2之后，就没法启动 VirtualBox 了</p>
+</li>
+<li><p>在连接 Shadowsocks 的情况下，WSL 2 内无法访问外网</p>
+</li>
+<li><p>IPv6 （不过我目前、可预见的未来没有这个需求</p>
+</li>
+<li><p>不支持 GPU</p>
+</li>
+</ul>
+<p>&emsp;&emsp;不过从我目前的需求来看，这个方案已经完美地解决了我的问题了，而 Vim，这篇文章的主角，暂时性地也失去了它的位置…看起来目前所有的场景，都不太需要它的出现了。</p>
+<p>&emsp;&emsp;不过目前所有命令行内的文本编辑工作，也算是全部交给 Vim 了，虽然不是一个主力，不过我想慢慢地去磨这个熟练 Vim 的进度，估计等到我走到工作岗位的时候，也可以算是高手了 hhh</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Linux/" rel="tag">Linux</a>, <a class="has-link-grey -link" href="/tags/VS-Code/" rel="tag">VS Code</a>, <a class="has-link-grey -link" href="/tags/Vim/" rel="tag">Vim</a>, <a class="has-link-grey -link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">编辑器</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/03/23/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">新的起点</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/14/UniqueLab%20%E6%98%A5%E4%BB%A4%E8%90%A5%E7%9A%84%E9%9D%A2%E8%AF%95/">
+                <span class="level-item">UniqueLab 春令营的面试总结</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="zhuo1ang">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        zhuo1ang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Wuhan, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            4
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            13
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/zhuo1angT" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/zhuo1angT">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/zhuo1angT" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">zhuo1ang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/%E6%83%B3%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">想法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%9D%82%E7%AF%87/">
+            <span class="level-start">
+                <span class="level-item">杂篇</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">
+            <span class="level-start">
+                <span class="level-item">计算机科学</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
+            <span class="level-start">
+                <span class="level-item">面试</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CS-APP/" style="font-size: 20px;">CS:APP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/%E5%93%B2%E5%AD%A6/" style="font-size: 10px;">哲学</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">汇编语言</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">编辑器</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%81%94%E5%88%9B/" style="font-size: 10px;">联创</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/23/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/8.jpg" alt="新的起点">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T10:22:42.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新的起点</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/18/%E6%88%91%E5%B4%8E%E5%B2%96%E7%9A%84%20Vim%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/7.jpg" alt="我崎岖的 Vim 学习之路">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T00:59:57.000Z">2020-03-18</time></div>
+                    <a href="/2020/03/18/%E6%88%91%E5%B4%8E%E5%B2%96%E7%9A%84%20Vim%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">我崎岖的 Vim 学习之路</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/14/UniqueLab%20%E6%98%A5%E4%BB%A4%E8%90%A5%E7%9A%84%E9%9D%A2%E8%AF%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/6.jpg" alt="UniqueLab 春令营的面试总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-14T05:00:50.000Z">2020-03-14</time></div>
+                    <a href="/2020/03/14/UniqueLab%20%E6%98%A5%E4%BB%A4%E8%90%A5%E7%9A%84%E9%9D%A2%E8%AF%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">UniqueLab 春令营的面试总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/24/%E7%BD%91%E8%AF%BE%E5%BC%80%E5%AD%A6%E5%90%8E%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/5.jpg" alt="一个近期情况总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T04:22:10.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/%E7%BD%91%E8%AF%BE%E5%BC%80%E5%AD%A6%E5%90%8E%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一个近期情况总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/14/%E6%9F%8F%E6%8B%89%E5%9B%BE-%E4%BA%94%E6%AE%B5%E5%AF%B9%E8%AF%9D-%E9%80%89%E6%AE%B5%E7%BF%BB%E8%AF%91/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/4.jpg" alt="Five Dialogues - Apology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-14T06:20:21.000Z">2020-02-14</time></div>
+                    <a href="/2020/02/14/%E6%9F%8F%E6%8B%89%E5%9B%BE-%E4%BA%94%E6%AE%B5%E5%AF%B9%E8%AF%9D-%E9%80%89%E6%AE%B5%E7%BF%BB%E8%AF%91/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Five Dialogues - Apology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%9D%82%E7%AF%87/">杂篇</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CS-APP/">
+                        <span class="tag">CS:APP</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VS-Code/">
+                        <span class="tag">VS Code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vim/">
+                        <span class="tag">Vim</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/">
+                        <span class="tag">哲学</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="tag">操作系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+                        <span class="tag">汇编语言</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/">
+                        <span class="tag">编译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">
+                        <span class="tag">编辑器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="tag">网络</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/">
+                        <span class="tag">翻译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%81%94%E5%88%9B/">
+                        <span class="tag">联创</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="我崎岖的 Vim 学习之路" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 zhuo1ang&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+				
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/zhuo1angT">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>CS:APP I 数据表示 - zhuo1ang</title>
+
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="CS:APP I 数据表示" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/zhuo1angT">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/gallery/thumbnails/1.jpg" alt="CS:APP I 数据表示">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-01-22T06:40:07.000Z">2020-01-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">计算机科学</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    28 分钟 读完 (大约 4195 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                CS:APP I 数据表示
+            
+        </h1>
+        <div class="content">
+            <p>在 CSAPP 正式部分的第一章，作者重点向我们介绍了硬件层面的数据存储、处理的基本概念，整数、浮点数的编码规则，运算的规则与性质。</p>
+<h2 id="信息的表示方法"><a href="#信息的表示方法" class="headerlink" title="信息的表示方法"></a><strong>信息的表示方法</strong></h2><p>在小时候浅薄地接触计算机世界的时候，有这样一个概念：<em>“一切信息都是表示为二进制的”</em>。具体来说，机器级程序本身就是一个字节序列，采用底层的、由二进制编码的指令集；而各类的数据，通过对应的编码规则，也由二进制表示。</p>
+<p>计算机中，使用 8 个<strong>位</strong>（bit）的块，或者<strong>字节</strong>（byte），作为最小的可寻址的内存单位，而不是访问内存中单独的位。二进制程序将内存视作一个非常大的字节数组，成为<strong>虚拟内存</strong>（virtual memory）。内存的每个字节都由一个唯一的数字标识，称作它的<strong>地址</strong>（address）。</p>
+<p>虚拟地址空间只是一个呈现给二进制程序的<strong>概念性映像</strong>，将物理内存在更高层级映射到虚拟内存的过程是将硬件和操作系统软件结合起来实现的。这一点提醒我们，平常谈到的内存往往指的是虚拟内存，它的完整功能并不是全部直接由硬件本身提供的。</p>
+<a id="more"></a>
+
+
+
+
+
+
+
+
+
+<h2 id="字长"><a href="#字长" class="headerlink" title="字长"></a><strong>字长</strong></h2><p>每台计算机都有一个<strong>字长</strong>（word size），指明<em>指针数据</em>的<strong>标称大小</strong>（nominal size）。因为虚拟地址是以这样的一个字来编码的，所以字长决定的最重要的系统参数就是虚拟地址空间的最大大小。</p>
+<p>具体来说，对于一台字长为 $w$ 位的机器而言，虚拟地址的范围就是 $0$ ~ $2^w-1$，程序最多访问     $2^w$ 个字节。</p>
+<p>32位字长限制虚拟地址空间为 $4 GB$，拓展到 64 位字长使得虚拟地址空间为 $16 EB$，大约是 $1.84 * 10^{19}$ 字节。</p>
+<table>
+<thead>
+<tr>
+<th>C  Data Type</th>
+<th>Typical  32-bit</th>
+<th>Typical  64-bit</th>
+<th align="left">x86-64</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>char</strong></td>
+<td>1</td>
+<td>1</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td><strong>short</strong></td>
+<td>2</td>
+<td>2</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td><strong>int</strong></td>
+<td>4</td>
+<td>4</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td><strong>long</strong></td>
+<td>4</td>
+<td>8</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td><strong>float</strong></td>
+<td>4</td>
+<td>4</td>
+<td align="left">4</td>
+</tr>
+<tr>
+<td><strong>double</strong></td>
+<td>8</td>
+<td>8</td>
+<td align="left">8</td>
+</tr>
+<tr>
+<td><strong>pointer</strong></td>
+<td>4</td>
+<td>8</td>
+<td align="left">8</td>
+</tr>
+</tbody></table>
+<p>上面的表给出了基本 C 数据类型所占的字节数的<strong>典型大小</strong>。</p>
+<p>C 语言标准没有规定 int， long 等类型变量的字节数，这导致了一些程序可移植性的问题。为了避免由于依赖“典型”大小和不同编译器设置带来的奇怪行为，ISO C99 引入了一类数据类型，其数据大小是固定的，不随编译器和机器设置而变化。其中有 int32_t，int64_t，它们分别为 4 个字节和 8个字节。</p>
+<h2 id="寻址与字节顺序：大小端"><a href="#寻址与字节顺序：大小端" class="headerlink" title="寻址与字节顺序：大小端"></a><strong>寻址与字节顺序：大小端</strong></h2><p>对于占据多字节空间的程序对象，它在内存中的实际表示由两点所决定：这个对象的地址，以及这个对象在内存中的排列。</p>
+<p>多字节的对象被存储为连续的字节序列，而对象的地址为其所使用的字节的最小的地址。例如，假设一个 int 类型的变量 x 的地址为 0x0100，那么 x 的四个字节将被存储在：</p>
+<p>0x0100、0x0101、0x0102、0x0103</p>
+<p>这四个连续的位置，这与我们一般的认识相符。</p>
+<p>在连续的字节中排列表示一个对象的字节有<strong>两种</strong>通用的规则。考虑一个 $w$ 位的整数，假设 $w$ 是 8 的倍数，那么这些位就能被分组成为字节。把数据按照从最高字节到最低字节的顺序存储的方式叫做<strong>大端法</strong>（big endian）；而从最低字节到最高字节存储的方式叫做<strong>小端法</strong>（little endian）。</p>
+<p>举例说明：</p>
+<p>假设有 int 类型变量 x，位于地址 0x0100 处，它的 16 进制值位 0x01234567。地址范围 0x0100 ~ 0x0103的字节顺序依赖于机器的类型：</p>
+<p><strong><em>大端法</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">0x0100</th>
+<th align="center">0x0101</th>
+<th align="center">0x0102</th>
+<th align="center">0x0103</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">……</td>
+<td align="center">01</td>
+<td align="center">23</td>
+<td align="center">45</td>
+<td align="center">67</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+<p><strong><em>小端法</em></strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">0x0100</th>
+<th align="center">0x0101</th>
+<th align="center">0x0102</th>
+<th align="center">0x0103</th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">……</td>
+<td align="center">67</td>
+<td align="center">45</td>
+<td align="center">23</td>
+<td align="center">01</td>
+<td align="center">……</td>
+</tr>
+</tbody></table>
+<p>大多数 Intel 机器都只采用小端模式。</p>
+<p>在 C 层级的编程中，大小端的特性几乎不会直接暴露给程序员，机器所使用的字节顺序是完全不可见的，可能与这一特点有关的有三种情况。</p>
+<ul>
+<li><p><strong>在网络数据传输时。</strong> 如果对不同机器的大小端特性不进行区分，数据信息的处理将发生错误。网络应用程序的代码编写必须遵守已经建立的，关于的字节顺序的规则，在数据发出前，数据接收后进行可能的转换。</p>
+</li>
+<li><p><strong>直接阅读字节级别的整数数据时。</strong> 举例来说，从某个文件中摘除了下面这行代码，该文件给出了一个针对 Intel x86-64 处理器的机器级代码的文本表示：</p>
+<blockquote>
+<p>4004d3:    01 05 43 0b 20 00        add    %eax,0x200b43(%rip)</p>
+</blockquote>
+<p>这一行是由<strong>反汇编器</strong>（disassembler）生成的。</p>
+<p>这时，偏置量 D 的表示就是小端的。</p>
+</li>
+<li><p><strong>编写规避正常的类型系统的程序时。</strong> 在 C 语言中，可以通过强制类型转换（cast）或联合（union）来允许以一种数据类型引用一个对象，而这种数据类型与创建这个对象时定义的数据类型不同。大多数应用编程都不推荐这种编码技巧，但是它们对系统及变成来说是非常有用，甚至是必须的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> *byte_pointer;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_bytes</span><span class="params">(byte_pointer start, <span class="keyword">size_t</span> len)</span></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> i;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %.2x"</span>, start[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_int</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_float</span><span class="params">(<span class="keyword">float</span> x)</span></span>&#123;</span><br><span class="line">	show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show_pointer</span><span class="params">(<span class="keyword">void</span> *x)</span></span>&#123;</span><br><span class="line">	show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="keyword">void</span> *));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数 <code>show_int</code>，<code>show_float</code> 和 <code>show_pointer</code> 展示了如何分别输出类型为 <code>int</code>、<code>float</code>和 <code>void *</code> 的 C 程序对象的字节表示。可以观察到它门仅仅传递给 <code>show_bytes</code> 一个指向它们参数 <code>x</code> 的指针 <code>&amp;x</code>，且这个指针被强制类型转换为<code>unsigned char *</code>。<strong>这种强制类型转换告诉编译器，程序应该把这个指针看成一个指向“字节序列”，而不是原始数据类型的对象。</strong></p>
+<p>这些过程使用 C 语言的运算符 sizeof 来确定对象使用的字节数。一般来说，表达式 <code>sizeof(T)</code> 返回存储一个类型为 T 的对象所需要的字节数。使用 sizeof 而不是一个固定的值，是向编写在不同机器类型上可移植的代码迈进了一步。</p>
+</li>
+</ul>
+<h2 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a><strong>移位运算</strong></h2><p>C 语言提供了一种移位运算，向左或者向右移动位模式。</p>
+<p>C 表达式  <code>x &lt;&lt; k</code> 会生成一个值：将 $x$ 向左移动 $k$ 位，丢弃掉最高的 $k$ 位，并在右端补 $k$ 个0。自然地，如果整数有 $w$ 个二进制位，那么移位量 $k$ 应该是一个 $0 ~ w-1$ 之间的值。移位运算还是从左至右可结合的，即： <code>x &lt;&lt; j &lt;&lt; k</code> 等价于 <code>(x &lt;&lt; j) &lt;&lt; k</code> 。</p>
+<p>有左移运算，自然有与之对应的右移运算<code>x &gt;&gt; k</code>，但是机器支持<strong>两种方式</strong>的右移：<strong>逻辑右移和算术右移</strong>。</p>
+<p><strong>逻辑右移直接在左端补 $k$ 个 0，而算术右移在左端补 $k$ 个最高有效位的值。</strong></p>
+<p>算术右移的做法看起来有些奇特，但是它对于有符号整数的运算非常有用，下面是一个例子。</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">参数 x</td>
+<td align="center">[01100011] [10010101]</td>
+</tr>
+<tr>
+<td align="center">x &lt;&lt; 4</td>
+<td align="center">[0011<em>0000</em>] [0101<em>0000</em>]</td>
+</tr>
+<tr>
+<td align="center">x &gt;&gt; 4 (逻辑右移)</td>
+<td align="center">[<em>0000</em>0110] [<em>0000</em>1001]</td>
+</tr>
+<tr>
+<td align="center">x &gt;&gt; 4 (算术右移)</td>
+<td align="center">[<em>0000</em>0110] [<em>1111</em>1001]</td>
+</tr>
+</tbody></table>
+<p>C 语言没有规定对于有有符号数应该使用哪种类型的右移，但是几乎所有编译器/机器组合都对有符号数使用算术右移，且许多程序员都假设机器会使用这种右移。另一方面，对于无符号数，右移必须是逻辑的。</p>
+<h2 id="整数表示"><a href="#整数表示" class="headerlink" title="整数表示"></a><strong>整数表示</strong></h2><p>首先是<strong>无符号数</strong>的编码，假设一个整数数据类型有 $w$ 位，我们可以将位向量写成 $\vec{x}$ ，表示整个向量。</p>
+<p>对于向量 $\vec{x}$ ：<br>$$<br>B2U_w(\vec{x}) = \sum_{i=0}^{w-1}x_i2^i<br>$$<br>无符号数的表示法是一个双射，$0 ~ 2^w-1$ 的共 $2^w$ 个整数都唯一地对应一个编码。</p>
+<p>对于有<strong>有符号数</strong>的编码，共有方式：<strong>补码，反码，原码。</strong>绝大多数的计算机采用<strong>补码表示法</strong>（Two-complement)。在这个定义中，将最高位解释为负权。</p>
+<p>对于向量 $\vec{x}$ ：<br>$$<br>B2T_w(\vec{x})=-x_{w-1}2^{w-1}+\sum_{i=0}^{w-2}{x_i2^i}<br>$$<br>补码表示法也是一个双射。</p>
+<p>首先来分析补码表示法能表示的最大、最小，以及一些特殊值，以 $w=4$ 为例。</p>
+<p>$$<br>B2T_4([0000])=0_{10}<br>$$</p>
+<p>$$<br>B2T_4([1000])=-1*2^{4-1}+0=-8_{10}<br>$$</p>
+<p>$$<br>B2T_4([0111])=0+\sum_{i=0}^{4-2}{2^i}=1+2+4=7_{10}<br>$$</p>
+<p>$$<br>B2T_4([1111])=-8+1+2+4=-1_{10}<br>$$</p>
+<p>每位均为 0，表示 0，这一点是自然的；</p>
+<p>最高位为 1，其它位均为 0，表示最小值：$-2^{w-1}$；</p>
+<p>最高位为 0，其它位均为 1，表示最大值：$2^{w-1}-1$；</p>
+<p>每位均为1，表示 -1，加上一个正数溢出后从 0 开始重新记数，这也是自然的。</p>
+<p>下面以一个例子再做说明：</p>
+<blockquote>
+<p> <strong>x =    15213: 00111011 01101101</strong></p>
+<p> <strong>y =   -15213: 11000100 10010011</strong></p>
+<p> <img src="Picture1.jpg" alt="有符号和无符号整数的编码"></p>
+</blockquote>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a><strong>类型转换</strong></h2><p>C 语言允许在各种不同类型之间进行显式或隐式的类型转换，从转换规则设计的角度，我们可以这样去思考：对于在两种形式中都能表示的数值，要求保持不变；另一方面，如果要这个数在新类型中无法表示，我们还需要设计一套规则。</p>
+<p>考虑下面的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">short <span class="keyword">int</span> v = <span class="number">-12345</span>;</span><br><span class="line"><span class="keyword">unsigned</span> short uv = (<span class="keyword">unsigned</span> short) v;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"v = %d, uv = %u\n"</span>, v, uv);</span><br></pre></td></tr></table></figure>
+
+<p>在补码的机器上，上述代码会产生如下的输出：</p>
+<blockquote>
+<p>v = -12345, uv = 53191</p>
+</blockquote>
+<p><strong>我们看到，有无符号整数之间的强制类型转换的结果保持位值不变，只是改变了解释这些位的方式。</strong></p>
+<p><img src="Picture3.jpg" alt="强制类型转换"></p>
+<h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a><strong>浮点数</strong></h2><p>浮点的意思是对形如 $V=x*2^y$ 的有理数进行编码，这是对于实数的一种近似表示。浮点数对执行非常大的数字、非常小（接近于 0）的数字，以及更普遍的作为实数运算的近似值的计算，是很有用的。</p>
+<p>直到 20 世纪 80 年代，每个计算机制造商都设计了自己的浮点数标准，以及运算的细节。另外，它们不太关注运算的准确性，而把实现的速度和简便性看得更重要。</p>
+<p>在 1985 年，这些情况随着 IEEE 754 标准的推出而改变了，这是一个设计精妙的表示浮点数及其运算的标准。目前，所有的计算机都支持后来这个被称为 <strong>IEEE 浮点</strong>的标准。</p>
+<h3 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a><strong>二进制小数</strong></h3><p>类似十进制小数，考虑一个形如<br>$$<br>b_mb_{m-1}…b_1b_0.b_{-1}b_{-2}…b_{-(n-1)}b_{-n}<br>$$<br>的表示法，其中每一个位的取值范围是 $0$ 和 $1$。这种表示方法所表示的数定义如下：<br>$$<br>b=\sum_{i=-n}^{m}{2^i*b_i}<br>$$<br><img src="Picture4.jpg" alt="Representation"></p>
+<p>仅考虑有限位数的编码，那么十进制表示法无法精确表达像 $\frac{1}{3}$ 和 $\frac{5}{7}$ 这样的数。类似，二进制小数也只能表示那些能够被写成 $x*2^y$ （其中 $x,y$ 是整数）的数。其他的值都只能近似地表示。增加位长可以提高精度。</p>
+<h3 id="IEEE-浮点"><a href="#IEEE-浮点" class="headerlink" title="IEEE 浮点"></a><strong>IEEE 浮点</strong></h3><p>上面提到的定点表示法不能很有效地表示非常大的数字。例如，表达式 $5×2^{100}$ 是用 $101$ 后面跟随 $100$ 个零的位模式来表示的。相反，我们希望通过给定 $x,y$ 来表示形如 $x×2^y$。</p>
+<p>IEEE 浮点标准用 $V=(-1)^s×M×2^E$ 的形式来表示一个数：</p>
+<ul>
+<li><strong>符号</strong>（sign）：$s$ 决定这个数是负数（$s=-1$) 还是正数（$s=0$），而对于数值 $0.0$ 的符号位解释为特殊情况处理。</li>
+<li><strong>尾数</strong>（significand）：$M$ 是一个二进制小数，它的范围是 1 ~ 2 - $\epsilon$，或者是 0 ~ 1 - $\epsilon$。</li>
+<li><strong>阶码</strong>（exponent）：$E$ 的作用是对浮点数加权，实际上就是在表示小数点的位置，也就是“浮点”。</li>
+</ul>
+<p><img src="Picture5.jpg" alt="Encoding"></p>
+<p>给定位表示，根据 <em>exp</em> 的值，被编码的值可以分成三种不同的情况。</p>
+<p><img src="Picture6.jpg" alt="Three Cases"></p>
+<h4 id="情况-1：规格化的值（Normalized-value）"><a href="#情况-1：规格化的值（Normalized-value）" class="headerlink" title="情况 1：规格化的值（Normalized value）"></a><strong>情况 1：规格化的值（Normalized value）</strong></h4><p>这是最普遍的情况，当 <em>exp</em> 的位模式既不全为 0（数值 0），也不全为 1 （对于单精度浮点数 float，数值为 255）时，都属于这类情况。</p>
+<p>在这种情况中，阶码 <em>exp</em> 字段被解释为<strong>以偏置（biased）形式表示</strong>的有符号整数。也就是说，阶码的值是 $E=e-Bias$。其中 $Bias$ 是一个等于 $2^{k-1}-1$ 的偏置量，对于单精度浮点数是 127，而双精度是 1023。</p>
+<p>小数字段 $frac$ 被解释为描述二进制小数值 $f$，由于二进制表示的最高位肯定是 1（implied leading 1），我们就不必对这个最高位进行编码，这样的处理获得了一个额外精度位。</p>
+<h4 id="情况-2：非规格化的值（Denormalized-value）"><a href="#情况-2：非规格化的值（Denormalized-value）" class="headerlink" title="情况 2：非规格化的值（Denormalized value）"></a><strong>情况 2：非规格化的值</strong>（Denormalized value）</h4><p>当阶码域全为 0 的时候，所表示的数是非规格化的。<strong>在这种情况下，阶码值是 $E=1-Bias$，而尾数的值是 $M=f$，也就是直接编码，不再包含隐含的开头的 1。</strong></p>
+<p>非规格化的数可以用来表示很接近零的数，由于所有的非规格数的阶码值都是一样的，所以它们在零的附近分布是完全均匀的的，即：相邻的两个非规格化浮点数之间的距离都是一致的。</p>
+<p>此外，考虑从最大的非规格数到最小的规格数的“过渡过程“，将阶码值设置为 $1-Bias$ 提供了一种平滑的方式过渡。</p>
+<h4 id="情况-3：特殊值"><a href="#情况-3：特殊值" class="headerlink" title="情况 3：特殊值"></a><strong>情况 3：特殊值</strong></h4><p>最后一类数值是当阶码全为 1 的时候出现的。</p>
+<p>当小数域全为零，得到的值表示无穷，当 $s=0$ 时是 $+\infty$，当 $s=1$ 时是 $-\infty$。当我们把两个非常大的数相乘，或者除以非常小的数的时候，无穷可以表示<strong>浮点溢出</strong>的结果。</p>
+<p>当小数域非零时，结果数值被称为 $NaN$，即”不是一个数字“（Not a Number）的缩写。一些运算的结果不能是实数或无穷，就会返回这样的 $NaN$ 值，比如当计算 $\sqrt{-1}$ 或 $\infty-\infty$ 时。</p>
+<p><img src="Picture7.jpg" alt="一个规范型浮点数编码的例子"></p>
+<p>上图是一个典型情况，规范型浮点数。</p>
+<h3 id="浮点数的“值域”"><a href="#浮点数的“值域”" class="headerlink" title="浮点数的“值域”"></a><strong>浮点数的“值域”</strong></h3><p><img src="Picture8.jpg" alt="以 8 位的情况为例"></p>
+<p><img src="Picture9.jpg" alt="在数轴上的分布"></p>
+<p>我们直观地看到，浮点数在原点的附近分布密集，远离原点的地方分布稀疏。事实上，这是由于在不同阶码下，$frac$ 区域加 1 变化的值不同而导致的。</p>
+<h3 id="浮点运算律与类型转换"><a href="#浮点运算律与类型转换" class="headerlink" title="浮点运算律与类型转换"></a><strong>浮点运算律与类型转换</strong></h3><ul>
+<li><p><code>int</code> ，<code>float</code>，<code>double</code> 之间进行的类型转换<strong>改变</strong>位表示。</p>
+</li>
+<li><p><code>float</code>，<code>double</code> 到 <code>int</code> 的转换截断小数部分，类似于“向 0 舍入”。</p>
+</li>
+<li><p><code>int</code>  →   <code>double</code> 的转换是精确的，这是由于  <code>double</code> 有 53 个 $frac$ 位。</p>
+</li>
+<li><p><code>int</code>  →   <code>float</code> 的转换可能是不精确的，需要舍入，这是由于 <code>float</code> 只有 23 个$frac$ 位。</p>
+</li>
+<li><p>浮点运算不是结合的，也不是交换的，采用从左到右的方式计算表达式，考虑这个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">3.14</span> + <span class="number">1e20</span> - <span class="number">1e20</span>; <span class="comment">// a = 0.0f, rounding</span></span><br><span class="line"><span class="keyword">float</span> b = <span class="number">3.14</span> + (<span class="number">1e20</span> - <span class="number">1e20</span>); <span class="comment">// b = 3.14f</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><img src="Picture10.jpg" alt="一些练习题"></p>
+</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/CS-APP/" rel="tag">CS:APP</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/06/CSAPP%20II%20switch/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">CS:APP II 番外-switch 的指令实现</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="zhuo1ang">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        zhuo1ang
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Wuhan, China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            4
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            13
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/zhuo1angT" target="_blank" rel="noopener">
+                关注我</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/zhuo1angT">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/zhuo1angT" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">zhuo1ang</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/%E6%83%B3%E6%B3%95/">
+            <span class="level-start">
+                <span class="level-item">想法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E6%9D%82%E7%AF%87/">
+            <span class="level-start">
+                <span class="level-item">杂篇</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/">
+            <span class="level-start">
+                <span class="level-item">计算机科学</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/%E9%9D%A2%E8%AF%95/">
+            <span class="level-start">
+                <span class="level-item">面试</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CS-APP/" style="font-size: 20px;">CS:APP</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/VS-Code/" style="font-size: 10px;">VS Code</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/%E5%93%B2%E5%AD%A6/" style="font-size: 10px;">哲学</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 10px;">操作系统</a> <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" style="font-size: 10px;">汇编语言</a> <a href="/tags/%E7%BC%96%E8%AF%91/" style="font-size: 10px;">编译</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">编辑器</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 10px;">网络</a> <a href="/tags/%E7%BF%BB%E8%AF%91/" style="font-size: 10px;">翻译</a> <a href="/tags/%E8%81%94%E5%88%9B/" style="font-size: 10px;">联创</a>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/23/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/8.jpg" alt="新的起点">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T10:22:42.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/%E6%96%B0%E7%9A%84%E8%B5%B7%E7%82%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新的起点</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/18/%E6%88%91%E5%B4%8E%E5%B2%96%E7%9A%84%20Vim%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/7.jpg" alt="我崎岖的 Vim 学习之路">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T00:59:57.000Z">2020-03-18</time></div>
+                    <a href="/2020/03/18/%E6%88%91%E5%B4%8E%E5%B2%96%E7%9A%84%20Vim%20%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">我崎岖的 Vim 学习之路</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/14/UniqueLab%20%E6%98%A5%E4%BB%A4%E8%90%A5%E7%9A%84%E9%9D%A2%E8%AF%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/6.jpg" alt="UniqueLab 春令营的面试总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-14T05:00:50.000Z">2020-03-14</time></div>
+                    <a href="/2020/03/14/UniqueLab%20%E6%98%A5%E4%BB%A4%E8%90%A5%E7%9A%84%E9%9D%A2%E8%AF%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">UniqueLab 春令营的面试总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/24/%E7%BD%91%E8%AF%BE%E5%BC%80%E5%AD%A6%E5%90%8E%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/5.jpg" alt="一个近期情况总结">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-24T04:22:10.000Z">2020-02-24</time></div>
+                    <a href="/2020/02/24/%E7%BD%91%E8%AF%BE%E5%BC%80%E5%AD%A6%E5%90%8E%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">一个近期情况总结</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%83%B3%E6%B3%95/">想法</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/14/%E6%9F%8F%E6%8B%89%E5%9B%BE-%E4%BA%94%E6%AE%B5%E5%AF%B9%E8%AF%9D-%E9%80%89%E6%AE%B5%E7%BF%BB%E8%AF%91/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/gallery/thumbnails/4.jpg" alt="Five Dialogues - Apology">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-14T06:20:21.000Z">2020-02-14</time></div>
+                    <a href="/2020/02/14/%E6%9F%8F%E6%8B%89%E5%9B%BE-%E4%BA%94%E6%AE%B5%E5%AF%B9%E8%AF%9D-%E9%80%89%E6%AE%B5%E7%BF%BB%E8%AF%91/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Five Dialogues - Apology</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/%E6%9D%82%E7%AF%87/">杂篇</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/C/">
+                        <span class="tag">C</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CS-APP/">
+                        <span class="tag">CS:APP</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VS-Code/">
+                        <span class="tag">VS Code</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vim/">
+                        <span class="tag">Vim</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/">
+                        <span class="tag">哲学</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="tag">操作系统</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">
+                        <span class="tag">汇编语言</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/">
+                        <span class="tag">编译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">
+                        <span class="tag">编辑器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="tag">网络</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E7%BF%BB%E8%AF%91/">
+                        <span class="tag">翻译</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E8%81%94%E5%88%9B/">
+                        <span class="tag">联创</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+        </div>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="CS:APP I 数据表示" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 zhuo1ang&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
+				
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="GitHub" href="https://github.com/zhuo1angT">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
